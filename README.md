@@ -17,5 +17,5 @@ A standalone Python desktop application that allows you to view, search, and del
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Raj123-0/Cookie-Manager-main
+   git clone [[https://github.com/Raj123-0/Cookie-Manager-main](https://github.com/Raj123-0/Cookie-Manager-main)]
    cd ChromeCookieManager
