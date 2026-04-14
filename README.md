@@ -13,6 +13,8 @@ A standalone Python desktop application that allows you to view, search, and del
 * Python 3.8+
 * Google Chrome installed locally
 
+## Disclaimer
+*This tool is for educational purposes and local web development testing. It accesses highly sensitive local data. Do not run this script on computers you do not own.
 ## Installation
 
 1. Clone the repository:
