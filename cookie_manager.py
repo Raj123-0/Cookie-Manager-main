@@ -1,15 +1,27 @@
-import os
-import json
+from __future__ import annotations
+"""Module for mathematical computation and analysis."""
+
+
 import base64
+import json
+import os
 import sqlite3
+
+from Crypto.Cipher import AES
+from tkinter import ttk, messagebox
 import shutil
 import tkinter as tk
-from tkinter import ttk, messagebox
 import win32crypt
-from Crypto.Cipher import AES
+
 
 class CookieManagerApp:
     def __init__(self, root):
+        """Init.
+        
+        Args:
+            root:
+        
+        """
         self.root = root
         self.root.title("Local Cookie Manager (Chrome)")
         self.root.geometry("800x600")
@@ -25,6 +37,9 @@ class CookieManagerApp:
 
     def setup_ui(self):
         # Top Frame for Controls
+        """Setup ui.
+        
+        """
         control_frame = tk.Frame(self.root, padx=10, pady=10)
         control_frame.pack(fill=tk.X)
 
@@ -65,6 +80,12 @@ class CookieManagerApp:
     # --- Backend Engine ---
 
     def get_encryption_key(self):
+        """Retrieve encryption key.
+        
+        Returns:
+            The computed result
+        
+        """
         try:
             with open(self.local_state_path, "r", encoding="utf-8") as f:
                 local_state = json.loads(f.read())
@@ -75,7 +96,17 @@ class CookieManagerApp:
             messagebox.showerror("Error", f"Failed to get master key.\nEnsure Chrome is installed.\n{e}")
             return None
 
-    def decrypt_data(self, data, key):
+    def decrypt_data(self, data, key) -> str:
+        """Decrypt data.
+        
+        Args:
+            data:
+            key:
+        
+        Returns:
+            str: Result of type str
+        
+        """
         try:
             iv = data[3:15]
             encrypted_data = data[15:-16]
@@ -86,6 +117,9 @@ class CookieManagerApp:
             return "[Decryption Failed]"
 
     def load_cookies(self):
+        """Load and parse cookies.
+        
+        """
         if not self.encryption_key:
             return
 
@@ -121,6 +155,9 @@ class CookieManagerApp:
             messagebox.showerror("Database Error", f"Could not read cookies.\n{e}")
 
     def delete_selected(self):
+        """Delete selected.
+        
+        """
         selected_item = self.tree.selection()
         if not selected_item:
             messagebox.showinfo("Select", "Please select a cookie to delete.")
